@@ -24,7 +24,7 @@
 
 - name: SFTP-Server | Ensure SELinux management package is present
   package:
-    name: "{{ 'python-semanage' if ansible_distribution == 'Debian' else 'libsemanage-python' }}"
+    name: "python3-libsemanage"
     state: present
   when: ansible_selinux and sftp_enable_selinux_support
 
@@ -34,7 +34,7 @@
     state: yes
     persistent: yes
   with_items:
-    - ssh_chroot_full_access
+    #- ssh_chroot_full_access
     - ssh_chroot_rw_homedirs
   when: ansible_selinux and sftp_enable_selinux_support
 
